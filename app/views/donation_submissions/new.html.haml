@@ -23,3 +23,7 @@
   .row
     .col-md-2
       = f.submit :save, class: 'btn btn-primary'
+
+:javascript
+  $('#donation_submission_user_id').select2()
+  $('#donation_submission_submission_date').datepicker()
