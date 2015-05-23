@@ -1,0 +1,34 @@
+%h3 New Donation
+= simple_form_for(@donation, html: {class: 'form'}) do |f|
+  .row
+    .col-sm-6.col-xs-12
+      = f.input :name, label: 'Name'
+  .row
+    .col-sm-6.col-xs-12
+      = f.input :email, label: 'Email'
+  .row
+    .col-sm-6.col-xs-12
+      = f.input :mobile_number, label: 'Mobile Number'
+  .row
+    .col-sm-6.col-xs-12
+      = f.input :amount, label: 'Amount'
+  .row
+    .col-sm-6.col-xs-12
+      = f.label 'Mode of Payment', class: 'right20'
+      = f.check_box :by_cash, {id: :by_cash_radio, 'data-on-text' =>'Cash', 'data-off-text' => 'Cheque', 'data-radio-all-off' => true, label: 'Mode of Payment', checked: true}, 'true', 'false'
+  .cheque_info.indent.hidden
+    .row
+      .col-sm-6.col-xs-12
+        = f.input :bank, label: 'Bank Name'
+    .row
+      .col-sm-6.col-xs-12
+        = f.input :cheque_number, label: 'Cheque Number'
+    .row
+      .col-sm-6.col-xs-12
+        = f.input :cheque_date, label: 'Cheque Date'
+  %br
+  %br
+  .row
+    .col-md-2
+      = f.submit 'Submit Donation', class: 'btn btn-primary'
+    
