@@ -41,6 +41,7 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'select2-rails'
 gem 'mongoid'
 gem 'bootstrap-sass'
 gem 'simple_form'

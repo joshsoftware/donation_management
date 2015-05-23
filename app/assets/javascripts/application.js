@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-switch.min
+//= require select2
 //= require_tree .
 
