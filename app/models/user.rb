@@ -10,7 +10,7 @@ class User
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
   field :role, type: String
-  field :contact_numberr, type: String
+  field :contact_number, type: String
   field :name, type: String
   field :company_name, type: String
   field :credit_limit, type: Integer
