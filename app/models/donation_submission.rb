@@ -7,5 +7,5 @@ class DonationSubmission
   field :amount_collected_by_cash, type: Integer
   field :amount_collected_by_cheque, type: Integer
   
-  #add relationship with user model
+  belongs_to :user
 end
