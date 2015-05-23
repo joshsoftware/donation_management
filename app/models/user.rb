@@ -47,4 +47,5 @@ class User
   #Validations
   validates :role, :contact_number, presence: true
   has_many :donations
+  has_many :donation_submissions
 end

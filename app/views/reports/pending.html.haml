@@ -1,4 +1,4 @@
-.bs-collection
+.bs-pending
   %table.table.table-hover
     %tr
       %th
@@ -11,7 +11,7 @@
         Submited By
     - @submissions.each do |submission|
       %tr 
-        %th= submission.amount_collected_by_cash
-        %th= submission.amount_collected_by_cheque
+        %th= submission.cash_amount_pending
+        %th= submission.cheque_amount_pending
         %th= submission.submission_date
         %th= submission.user.email
