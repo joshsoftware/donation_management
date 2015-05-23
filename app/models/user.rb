@@ -62,11 +62,13 @@ class User
 
   def cash_amount_pending
     total_submitted = self.donation_submissions.desc(:created_at).first.try(:cumulative_by_cash).to_i
+    return self.total_collection_by_cash if total_submitted == 0
     amount_pending = self.total_collection_by_cash - total_submitted
   end
 
   def cheque_amount_pending
     total_submitted = self.donation_submissions.desc(:created_at).first.try(:cumulative_by_cheque).to_i
+    return self.total_collection_by_cheque if total_submitted == 0
     amount_pending = self.total_collection_by_cheque - total_submitted
   end
 
