@@ -36,4 +36,5 @@ class User
   # field :locked_at,       type: Time
 
   has_many :donations
+  has_many :donation_submissions
 end
