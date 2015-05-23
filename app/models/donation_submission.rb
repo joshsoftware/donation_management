@@ -6,6 +6,7 @@ class DonationSubmission
   field :cheque_amount_pending, type: Integer
   field :amount_collected_by_cash, type: Integer
   field :amount_collected_by_cheque, type: Integer
+  field :submission_date, type: Date
   
   belongs_to :user
 end
