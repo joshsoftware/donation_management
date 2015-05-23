@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  resources :users
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  resources :reports, only: [] do 
+    collection do 
+      get :collections
+      get :submissions
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

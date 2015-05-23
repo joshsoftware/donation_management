@@ -12,5 +12,10 @@
  *
 *= require devise-bootstrap-views
  *= require_tree .
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require dataTables/jquery.dataTables
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";

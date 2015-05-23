@@ -1,0 +1,11 @@
+%h1
+  Donation Management
+%table{ :class => 'datatable', border: 2}
+  %th Email
+  %th Role
+  - @user.each do |user|
+    %tr
+      %td
+        = user.email
+      %td
+        = user.role
