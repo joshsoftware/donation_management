@@ -15,8 +15,9 @@ class Donation
 
   field :pan_number, type: String
 
-  validates :name, :email, :mobile_number, :amount, presence: true
+  validates :name, :email, :mobile_number, :amount, :user, presence: true
   validates_format_of :email, with: Devise.email_regexp 
   validates :cheque_number, :bank, :cheque_date, presence: true, if: -> {by_cash == false} 
 
+  belongs_to :user
 end
