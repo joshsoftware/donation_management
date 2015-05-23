@@ -88,6 +88,11 @@ GEM
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-datatables-rails (3.3.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -110,6 +115,7 @@ GEM
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     multi_json (1.11.0)
+    netrc (0.10.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     optionable (0.2.0)
@@ -147,6 +153,9 @@ GEM
       json (~> 1.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rest-client (1.7.3)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     ruby_parser (3.6.6)
       sexp_processor (~> 4.1)
     sass (3.4.14)
@@ -198,9 +207,11 @@ DEPENDENCIES
   devise
   haml-rails
   jbuilder (~> 2.0)
+  jquery-datatables-rails
   jquery-rails
   mongoid
   rails (= 4.2.1)
+  rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form
