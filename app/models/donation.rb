@@ -12,7 +12,7 @@ class Donation
 
   field :cheque_number, type: String
   field :bank, type: String
-  field :cheque_date, type: Date
+  field :cheque_date, type: String, default: Date.today.strftime("%d/%m/%Y") 
 
   field :pan_number, type: String
 
