@@ -11,6 +11,7 @@ class DonationSubmissionsController < ApplicationController
     @donation.cumulative_by_cash = @donation.submitted_by_cash.to_i + last_cumulative_by_cash_amounts(@donation.user)
     @donation.cumulative_by_cheque = @donation.submitted_by_cheque.to_i + last_cumulative_by_cheque_amounts(@donation.user)
     @donation.save
+    flash[:success] = "Added collection entry sucessfully" 
     redirect_to new_donation_submission_path
     else
       @coordinator = User.where(role: 'Coordinator')
