@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  devise :database_authenticatable,
+  devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -13,7 +13,7 @@ class User
   field :contact_number, type: String
   field :name, type: String
   field :company_name, type: String
-  field :credit_limit, type: Integer, default: 0
+  field :credit_limit, type: Integer, default: 25000
   field :total_collection_by_cash, type: Integer, default: 0
   field :total_collection_by_cheque, type: Integer, default: 0
 
@@ -36,6 +36,16 @@ class User
    field :confirmed_at,         type: Time
    field :confirmation_sent_at, type: Time
    field :unconfirmed_email,    type: String # Only if using reconfirmable
+
+#inviatable
+   field :invitation_token, type: String
+   field :invitation_created_at, type: Time
+   field :invitation_sent_at, type: Time
+   field :invitation_accepted_at, type: Time
+   field :invitation_limit, type: Integer
+
+   index( {invitation_token: 1}, {:background => true} )
+   index( {invitation_by_id: 1}, {:background => true} )
 
 
 

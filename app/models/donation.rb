@@ -13,7 +13,7 @@ class Donation
 
   field :cheque_number, type: String
   field :bank, type: String
-  field :cheque_date, type: Date
+  field :cheque_date, type: String, default: Date.today.strftime("%d/%m/%Y") 
 
   field :pan_number, type: String
 
@@ -35,7 +35,9 @@ class Donation
     end
 
     sms = SmsService::Sms.new
-    sms.delay.send_sms_notification(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
+    Thread.new do
+      sms.send_sms_notification(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
+    end
   end
 
   def self.to_csv
@@ -44,7 +46,7 @@ class Donation
       Donation.all.each do |donation|
         payment_mode = donation.by_cash ? 'Cash' : 'Cheque'
         csv << [donation.created_at.to_date, donation.name, donation.email, donation.mobile_number, donation.amount, payment_mode, donation.cheque_date, 
-          donation.cheque_number, donation.bank, donation.user.name ]
+                donation.cheque_number, donation.bank, donation.user.name ]
       end
     end
   end
