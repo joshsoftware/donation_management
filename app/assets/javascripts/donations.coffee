@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('#by_cash_radio').bootstrapSwitch()
 
   $('#by_cash_radio').on 'switchChange.bootstrapSwitch', (event, state) ->        
     if state == false
