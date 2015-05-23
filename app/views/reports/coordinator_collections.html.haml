@@ -11,6 +11,7 @@
         %th Cheque Date
         %th Cheque No
         %th Bank
+        %th Collected By
     %tbody
       - @collections.to_a.each do |collection|
         - payment_mode = collection.by_cash ? 'Cash' : 'Cheque'
@@ -24,3 +25,4 @@
           %td= collection.cheque_date
           %td= collection.cheque_number
           %td= collection.bank
+          %td= collection.user.name
