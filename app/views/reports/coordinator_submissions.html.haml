@@ -1,17 +1,14 @@
-.bs-collection
+.bs-submissions
   %table.table.table-hover
     %tr
       %th
-        Cash
-      %th 
-        Cheque
-      %th 
         Submission Date
-      %th
-        Submited By
+      %th 
+        Cash Amount Submitted
+      %th 
+        Cheque Amount Submitted
     - @submissions.each do |submission|
-      %tr 
+      %tr
+        %th= submission.submission_date
         %th= submission.amount_collected_by_cash
         %th= submission.amount_collected_by_cheque
-        %th= submission.submission_date
-        %th= submission.user.email

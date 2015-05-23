@@ -1,14 +1,19 @@
 class ReportsController < ApplicationController
 
-  def collections
+  def coordinator_collections
+    @collections = Donation.where(user_id: current_user.id).desc(:created_at)
   end
 
   def submissions
-    if params[:type] == 'collected'
-      @submissions = DonationSubmission.desc(:submission_date)
-    elsif params[:type] == 'pending'
-      @submissions = DonationSubmission.desc(:submission_date)
-    end
-    render params[:type]
+    @submissions = DonationSubmission.desc(:submission_date)
+  end
+
+  def pendings
+    user_ids = DonationSubmission.distinct(:user_id)
+    @pendings = DonationSubmission.where(:user_id.in => user_ids).desc(:submission_date)
+  end
+
+  def coordinator_submissions
+    @submissions = DonationSubmission.where(user: current_user).desc(:submission_date)
   end
 end

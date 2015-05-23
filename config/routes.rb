@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users
+  resources :users, except: :show
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     collection do 
       get :collections
       get :submissions
+      get :pendings
+      get :coordinator_submissions
+      get :coordinator_collections
     end
   end
 
