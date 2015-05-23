@@ -49,6 +49,7 @@ gem 'haml-rails'
 gem 'devise'
 gem "devise-bootstrap-views"
 gem 'rest-client'
+gem 'foreman'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"

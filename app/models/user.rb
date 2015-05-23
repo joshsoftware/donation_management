@@ -37,7 +37,7 @@ class User
    field :confirmation_sent_at, type: Time
    field :unconfirmed_email,    type: String # Only if using reconfirmable
 
-   validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
+
 
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
@@ -45,7 +45,8 @@ class User
   # field :locked_at,       type: Time
 
   #Validations
-  validates :role, :contact_number, presence: true
+  validates :contact_number, presence: true
+   validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
   has_many :donations
   has_many :donation_submissions, inverse_of: :user
 
@@ -57,6 +58,10 @@ class User
   def cheque_amount_pending
     total_submitted = self.donation_submissions.desc(:created_at).first.try(:cumulative_by_cheque).to_i
     amount_pending = self.total_collection_by_cheque - total_submitted
+  end
+
+  def is_admin?
+    ['Super Admin', 'Admin']. include? role
   end
 
 end

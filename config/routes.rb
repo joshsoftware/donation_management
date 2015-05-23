@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users do
+  resources :users, except: :show do
     member do
       get 'donation_pending_amounts'
     end
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       get :collections
       get :submissions
       get :pendings
+      get :coordinator_submissions
+      get :coordinator_collections
     end
   end
 
