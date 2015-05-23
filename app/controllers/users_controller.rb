@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.invite!(current_user)
       render 'index'
     else
       render 'new'
