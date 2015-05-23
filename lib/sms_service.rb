@@ -11,6 +11,8 @@ module SmsService
       send_sms(coordinator_ph_number, coordinator_text)
     end
 
+    private
+
     def send_sms(phone_number, text)
       url = "http://sms.smscollection.com/sendsmsv2.asp?"
       params = {user: ENV['user'], password: ENV['password'], sender: ENV['sender'], text: text, PhoneNumber: phone_number}
