@@ -1,6 +1,7 @@
 class Donation
   include Mongoid::Document
   include Mongoid::Timestamps
+  include SmsService 
 
   field :name, type: String
   field :email, type: String 
@@ -20,4 +21,19 @@ class Donation
   validates :cheque_number, :bank, :cheque_date, presence: true, if: -> {by_cash == false} 
 
   belongs_to :user
+
+  after_create do
+    if self.by_cash
+      collection = self.user.total_collection_by_cash
+      collection += self.amount
+      self.user.set(:total_collection_by_cash, collection)
+    else
+      collection = self.user.total_collection_by_cheque
+      collection += self.amount
+      self.user.set(:total_collection_by_cheque, collection)
+    end
+
+    SmsService::Sms.send_sms_notification.new(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
+  end
+
 end

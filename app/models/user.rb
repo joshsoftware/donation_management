@@ -10,12 +10,12 @@ class User
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
   field :role, type: String
-  field :contact_numberr, type: String
+  field :contact_number, type: String
   field :name, type: String
   field :company_name, type: String
-  field :credit_limit, type: Integer
-  field :total_collection_by_cash, type: Integer
-  field :total_collection_by_check, type: Integer
+  field :credit_limit, type: Integer, default: 0
+  field :total_collection_by_cash, type: Integer, default: 0
+  field :total_collection_by_cheque, type: Integer, default: 0
 
   ## Recoverable
   field :reset_password_token,   type: String
