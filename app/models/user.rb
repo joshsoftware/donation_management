@@ -47,7 +47,7 @@ class User
   #Validations
   validates :role, :contact_number, presence: true
   has_many :donations
-  has_many :donation_submissions
+  has_many :donation_submissions, inverse_of: :user
 
   def cash_amount_pending
     total_submitted = self.donation_submissions.desc(:created_at).first.try(:cumulative_by_cash).to_i
