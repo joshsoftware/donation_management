@@ -9,5 +9,5 @@
     = csrf_meta_tags
   %body
     .container
-      = link_to "Temp link Add new Donation", new_donations_path
+      = render "layouts/navigation" if user_signed_in?
       = yield

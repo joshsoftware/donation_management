@@ -5,11 +5,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-<<<<<<< HEAD
 
   resource :donations, only: [:new, :create]
-  root 'donations#new'
-=======
+  root 'home#index'
   # root 'welcome#index'
   resources :reports, only: [] do 
     collection do 
@@ -17,7 +15,6 @@ Rails.application.routes.draw do
       get :submissions
     end
   end
->>>>>>> 354ac33767f616be487edaa6ae7900a3240f70dd
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
