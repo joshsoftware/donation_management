@@ -9,6 +9,8 @@ class User
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
   field :role, type: String
+  field :name, type: String
+  field :company_name, type: String
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -29,6 +31,8 @@ class User
    field :confirmed_at,         type: Time
    field :confirmation_sent_at, type: Time
    field :unconfirmed_email,    type: String # Only if using reconfirmable
+
+   validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
 
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts

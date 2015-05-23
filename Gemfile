@@ -47,4 +47,5 @@ gem 'simple_form'
 gem 'haml-rails'
 gem 'devise'
 gem 'rest-client'
+gem 'jquery-datatables-rails'
 

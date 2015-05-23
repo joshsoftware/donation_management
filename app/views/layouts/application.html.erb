@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<%= render "layouts/navigation" if user_signed_in?%>
 <%= yield %>
 
 </body>
