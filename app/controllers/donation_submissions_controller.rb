@@ -1,7 +1,7 @@
 class DonationSubmissionsController < ApplicationController
   def new
     @donation = DonationSubmission.new
-    @coordinator = User.where(role: 'Coordinator')
+    @coordinator = User.all
   end
 
   def create
@@ -14,7 +14,7 @@ class DonationSubmissionsController < ApplicationController
     flash[:success] = "Added collection entry sucessfully" 
     redirect_to new_donation_submission_path
     else
-      @coordinator = User.where(role: 'Coordinator')
+      @coordinator = User.all
       render 'new'
     end
   end
