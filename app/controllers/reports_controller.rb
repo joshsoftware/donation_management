@@ -1,7 +1,13 @@
 class ReportsController < ApplicationController
 
-  def coordinator_collections
-    @collections = Donation.where(user_id: current_user.id).desc(:created_at)
+  def collections
+    respond_to do |format|
+      format.csv{
+        send_data Donation.to_csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=donations.csv"
+      }
+      format.html
+        @collections = current_user.is_admin? ? Donation.all.desc(:created_at) : Donation.where(user_id: current_user.id).desc(:created_at)
+      end
   end
 
   def submissions
