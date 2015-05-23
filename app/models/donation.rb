@@ -5,7 +5,7 @@ class Donation
   field :name, type: String
   field :email, type: String 
   field :mobile_number, type: String
-  field :amount, type: Float
+  field :amount, type: Integer
   field :by_cash, type: Boolean, default: true
   field :submitted_to_office, type: Boolean, default: false
 
