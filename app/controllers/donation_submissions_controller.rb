@@ -7,11 +7,13 @@ class DonationSubmissionsController < ApplicationController
   def create
     @donation = DonationSubmission.new(donation_params)
     @donation.received_by = current_user
-   if @donation.save
+   if @donation.valid?
     @donation.cumulative_by_cash = @donation.submitted_by_cash.to_i + last_cumulative_by_cash_amounts(@donation.user)
     @donation.cumulative_by_cheque = @donation.submitted_by_cheque.to_i + last_cumulative_by_cheque_amounts(@donation.user)
-      redirect_to new_donation_submission_path
+    @donation.save
+    redirect_to new_donation_submission_path
     else
+      @coordinator = User.where(role: 'Coordinator')
       render 'new'
     end
   end
