@@ -9,6 +9,9 @@
       %a.navbar-brand{:href => '/'} Seva Sahayog Donations 
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
+        - if current_user.is_admin?
+          %li
+            = link_to "Make Donation Collection Entries", new_donation_submission_path
         %li
           = link_to "Make New Donation", new_donations_path
         %li.dropdown
@@ -17,6 +20,7 @@
             %b.caret
             %ul.dropdown-menu{"role" => "menu"}
               - if current_user.is_admin?
+                %li= link_to 'Manage Users', users_path
                 %li= link_to 'Collection', collections_reports_path
                 %li= link_to 'Submission', submissions_reports_path
                 %li= link_to 'Pending', pendings_reports_path
@@ -25,4 +29,4 @@
                 %li= link_to 'Submission', coordinator_submissions_reports_path
         %li
           = link_to "Sign out", destroy_user_session_path, :method => :delete
-        
+

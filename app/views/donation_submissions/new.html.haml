@@ -17,7 +17,7 @@
       = f.input :submitted_by_cheque, label: 'Cheque Submitted'
   .row
     .col-sm-6.col-xs-12
-      = f.input :submission_date
+      = f.input :submission_date, input_html: { class: "datepicker", value: Time.now.strftime('%d-%m-%Y') }
   %br
   %br
   .row
