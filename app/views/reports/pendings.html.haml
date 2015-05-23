@@ -1,5 +1,5 @@
 - if current_user.is_admin?
-  = button_to "Export To CSV", submissions_reports_path, :class => "btn btn-success export"
+  = button_to "Export To CSV", submissions_reports_path(:format => :csv), :class => "btn btn-success export", method: :get
 .bs-pending
   %table.table.table-hover
     %tr

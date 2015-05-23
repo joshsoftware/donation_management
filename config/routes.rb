@@ -19,7 +19,6 @@ Rails.application.routes.draw do
       get :submissions
       get :pendings
       get :coordinator_submissions
-      get :coordinator_collections
     end
   end
 

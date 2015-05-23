@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
 
-  def coordinator_collections
+  def collections
     respond_to do |format|
       format.csv{
         send_data Donation.to_csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=donations.csv"
