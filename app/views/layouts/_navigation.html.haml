@@ -17,12 +17,11 @@
             %b.caret
             %ul.dropdown-menu{"role" => "menu"}
               - if current_user.is_admin?
-                %li= link_to 'Collection', '#'
-                //%li= link_to 'Collection', collections_reports_path(format: :csv)
+                %li= link_to 'Collection', collections_reports_path
                 %li= link_to 'Submission', submissions_reports_path
                 %li= link_to 'Pending', pendings_reports_path
               - else
-                %li= link_to 'Collection', coordinator_collections_reports_path
+                %li= link_to 'Collection', collections_reports_path
                 %li= link_to 'Submission', coordinator_submissions_reports_path
         %li
           = link_to "Sign out", destroy_user_session_path, :method => :delete
