@@ -55,3 +55,4 @@ gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"
 gem 'delayed_job_mongoid'
 gem 'foreman', '~> 0.75.0'
+gem 'unicorn'
