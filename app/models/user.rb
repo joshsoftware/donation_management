@@ -13,7 +13,7 @@ class User
   field :contact_number, type: String
   field :name, type: String
   field :company_name, type: String
-  field :credit_limit, type: Integer
+  field :credit_limit, type: Integer, default: 0
   field :total_collection_by_cash, type: Integer, default: 0
   field :total_collection_by_cheque, type: Integer, default: 0
 
