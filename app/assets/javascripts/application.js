@@ -12,8 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/jquery.dataTables
+//= require bootstrap-datepicker
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-switch.min
+//= require select2
 //= require_tree .
 

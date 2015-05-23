@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     collection do 
       get :collections
       get :submissions
+      get :pendings
     end
   end
+
+  resources :donation_submissions, only: [:new, :create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
