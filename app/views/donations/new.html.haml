@@ -15,8 +15,8 @@
   .row
     .col-sm-6.col-xs-12
       = f.label 'Mode of Payment', class: 'right20'
-      = f.check_box :by_cash, {id: :by_cash_radio, 'data-on-text' =>'Cash', 'data-off-text' => 'Cheque', 'data-radio-all-off' => true, label: 'Mode of Payment', checked: true}, 'true', 'false'
-  .cheque_info.indent.hidden
+      = f.check_box :by_cash, {id: :by_cash_radio, 'data-on-text' =>'Cash', 'data-off-text' => 'Cheque', 'data-radio-all-off' => true, label: 'Mode of Payment', checked: f.object.by_cash == true}, 'true', 'false'
+  .cheque_info.indent{:class => f.object.by_cash == true ? 'hidden' : ''}
     .row
       .col-sm-6.col-xs-12
         = f.input :bank, label: 'Bank Name'
@@ -27,8 +27,10 @@
       .col-sm-6.col-xs-12
         = f.input :cheque_date, label: 'Cheque Date', as: :string, wrapper: :date_field, as: :date_field, input_html: { class: "dontation_cheque_date"} 
   %br
-  %br
-  .row
+  .row.center-block
     .col-md-2
       = f.submit 'Submit Donation', class: 'btn btn-primary'
+  %br
+  %br
+      
     

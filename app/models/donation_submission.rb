@@ -10,4 +10,6 @@ class DonationSubmission
 
   belongs_to :user
   belongs_to :received_by, class_name: 'User'
+
+  validates_presence_of :user
 end
