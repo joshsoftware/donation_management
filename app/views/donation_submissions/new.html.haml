@@ -3,16 +3,21 @@
   .row
     .col-sm-6.col-xs-12
       = f.association :user, as: :select, collection: @coordinator
-      .col-sm-3
-        = label_tag "Pending Cash Amount"
-      .col-sm-3
-        = label_tag "Pending Cheque Amount"
+      .panel.panel-info.hidden#pending_amount_info_panel
+        .panel-body
+          .col-sm-6
+            = label_tag "Pending Cash Amount", nil, id: "pending_cash_amount"
+          .col-sm-6
+            = label_tag "Pending Cheque Amount", nil, id: "pending_cheque_amount"
   .row
     .col-sm-6.col-xs-12
       = f.input :submitted_by_cash, label: 'Cash Submitted'
   .row
     .col-sm-6.col-xs-12
       = f.input :submitted_by_cheque, label: 'Cheque Submitted'
+  .row
+    .col-sm-6.col-xs-12
+      = f.input :submission_date
   %br
   %br
   .row

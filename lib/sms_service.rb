@@ -15,7 +15,7 @@ module SmsService
 
     def send_sms(phone_number, text)
       url = "http://sms.smscollection.com/sendsmsv2.asp?"
-      params = {user: ENV['user'], password: ENV['password'], sender: ENV['sender'], text: text, PhoneNumber: phone_number}
+      params = {user: ENV['sms_user'], password: ENV['sms_password'], sender: ENV['sms_sender'], text: text, PhoneNumber: phone_number}
       response = RestClient.post url, params, content_type: :json, accept: :json
     end
   end
