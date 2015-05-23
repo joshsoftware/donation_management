@@ -14,4 +14,11 @@ class UsersController < ApplicationController
 
   def create
   end
+
+  def donation_pending_amounts
+    user = User.find(params[:id])
+    @cash_pending =  user.cash_amount_pending
+    @cheque_pending = user.cheque_amount_pending
+  end
+
 end

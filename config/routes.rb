@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users
+  resources :users do
+    member do
+      get 'donation_pending_amounts'
+    end
+  end
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

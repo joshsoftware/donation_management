@@ -50,12 +50,12 @@ class User
   has_many :donation_submissions, inverse_of: :user
 
   def cash_amount_pending
-    total_submitted = self.donation_submissions.desc(:submission_date).first.try(:cumulative_by_cash).to_i
+    total_submitted = self.donation_submissions.desc(:created_at).first.try(:cumulative_by_cash).to_i
     amount_pending = self.total_collection_by_cash - total_submitted
   end
 
   def cheque_amount_pending
-    total_submitted = self.donation_submissions.desc(:submission_date).first.try(:cumulative_by_cheque).to_i
+    total_submitted = self.donation_submissions.desc(:created_at).first.try(:cumulative_by_cheque).to_i
     amount_pending = self.total_collection_by_cheque - total_submitted
   end
 
