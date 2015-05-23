@@ -1,11 +1,15 @@
-%h1
-  Donation Management
-%table{ :class => 'datatable', border: 2}
+%table{ :class => 'datatable', border: 4}
+  %th Name
   %th Email
   %th Role
+  %th Company
   - @user.each do |user|
     %tr
+      %td
+        = user.name
       %td
         = user.email
       %td
         = user.role
+      %td
+        = user.company_name
