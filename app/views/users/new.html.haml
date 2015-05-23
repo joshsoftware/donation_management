@@ -1,0 +1,20 @@
+
+
+%h4= t('.sign_up', :default => "Create User")
+.panel-body
+  = simple_form_for @user do |f|
+    .row
+      = f.input :name
+    .row
+      = f.input :company_name
+    .row
+      = f.input :contact_number
+    .row
+      = f.input :email
+    .row
+      = f.input :password
+    .row
+      = f.input :password_confirmation
+    .row
+      = f.input :role, collection: assign_role(current_user)
+    = f.submit t('.sign_up', :default => "create"), class: "btn btn-primary"
