@@ -10,3 +10,5 @@ $(document).ready ->
       $('.cheque_info').removeClass('hidden')
     else   
       $('.cheque_info').addClass('hidden')
+
+  $('#donation_cheque_date').datepicker()
