@@ -1,7 +1,16 @@
-.row
-  .container
-    = simple_form_for @donation do |f|
+%h3 New Donation Submission
+= simple_form_for @donation do |f|
+  .row
+    .col-sm-6.col-xs-12
       = f.association :user, as: :select, collection: @coordinator
+  .row
+    .col-sm-6.col-xs-12
       = f.input :submitted_by_cash, label: 'Cash Submitted'
+  .row
+    .col-sm-6.col-xs-12
       = f.input :submitted_by_cheque, label: 'Cheque Submitted'
+  %br
+  %br
+  .row
+    .col-md-2
       = f.submit :save, class: 'btn btn-primary'
