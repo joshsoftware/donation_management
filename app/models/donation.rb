@@ -1,3 +1,4 @@
+require 'csv'
 class Donation
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -12,7 +13,7 @@ class Donation
 
   field :cheque_number, type: String
   field :bank, type: String
-  field :cheque_date, type: Date
+  field :cheque_date, type: String, default: Date.today.strftime("%d/%m/%Y") 
 
   field :pan_number, type: String
 
@@ -35,6 +36,17 @@ class Donation
 
     sms = SmsService::Sms.new
     sms.delay.send_sms_notification(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << ["Date", "Donor Name", "Donor Email", "Donor Mobile" ,"Amount", "Cash/Cheque", "Cheque date", "Cheque number", "Bank", "Collected By"]
+      Donation.all.each do |donation|
+        payment_mode = donation.by_cash ? 'Cash' : 'Cheque'
+        csv << [donation.created_at.to_date, donation.name, donation.email, donation.mobile_number, donation.amount, payment_mode, donation.cheque_date, 
+          donation.cheque_number, donation.bank, donation.user.name ]
+      end
+    end
   end
 
 end
