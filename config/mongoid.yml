@@ -103,7 +103,7 @@ test:
 production:
   sessions:
     default:
-      database: ENV['MONGOLAB_URI']
+      uri: ENV['MONGOLAB_URI']
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
