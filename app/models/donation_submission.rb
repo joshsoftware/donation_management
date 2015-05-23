@@ -11,5 +11,5 @@ class DonationSubmission
   belongs_to :user
   belongs_to :received_by, class_name: 'User'
 
-  validates_presence_of :user
+  validates :user_id, :submission_date, presence: true
 end

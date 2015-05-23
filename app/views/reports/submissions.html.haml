@@ -1,3 +1,5 @@
+- if current_user.is_admin?
+  = button_to "Export To CSV", submissions_reports_path, :class => "btn btn-success export"
 .bs-submissions
   %table.table.table-hover
     %tr
@@ -13,8 +15,10 @@
         Received By
     - @submissions.each do |submission|
       %tr 
-        %th= submission.submitted_by_cash
-        %th= submission.submitted_by_cheque
-        %th= submission.submission_date
-        %th= submission.user.name
-        %th= current_user.name
+        %td= submission.submitted_by_cash
+        %td= submission.submitted_by_cheque
+        %td= submission.submission_date
+        - sub_display_name = submission.user.name.nil? ? submission.user.email : submission.user.name
+        %td= sub_display_name
+        - rec_display_name = current_user.name.nil? ? current_user.email : current_user.name
+        %td= rec_display_name

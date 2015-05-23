@@ -1,5 +1,3 @@
-- if current_user.is_admin?
-  = button_to "Export To CSV", coordinator_collections_reports_path, :class => "btn btn-success export"
 .bs-collection
   %table.table.table-hover
     %thead
@@ -13,6 +11,7 @@
         %th Cheque Date
         %th Cheque No
         %th Bank
+        %th Collected By
     %tbody
       - @collections.to_a.each do |collection|
         - payment_mode = collection.by_cash ? 'Cash' : 'Cheque'
@@ -26,3 +25,4 @@
           %td= collection.cheque_date
           %td= collection.cheque_number
           %td= collection.bank
+          %td= collection.user.name
