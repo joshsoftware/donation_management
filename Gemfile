@@ -41,6 +41,7 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'select2-rails'
 gem 'mongoid'
 gem 'bootstrap-sass'
 gem 'simple_form'
@@ -48,4 +49,5 @@ gem 'haml-rails'
 gem 'devise'
 gem "devise-bootstrap-views"
 gem 'rest-client'
-
+gem 'bootstrap-datepicker-rails'
+gem "font-awesome-rails"
