@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do 
       get :collections
       get :submissions
+      get :pendings
     end
   end
 

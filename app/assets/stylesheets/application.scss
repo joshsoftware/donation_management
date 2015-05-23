@@ -10,6 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap-datepicker3
+ *= require font-awesome
  *= require_tree .
  *= require select2
  *= require select2-bootstrap
@@ -18,3 +20,4 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'bootstrap-switch.min';
+@import "font-awesome";

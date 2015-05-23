@@ -25,7 +25,7 @@
         = f.input :cheque_number, label: 'Cheque Number'
     .row
       .col-sm-6.col-xs-12
-        = f.input :cheque_date, label: 'Cheque Date'
+        = f.input :cheque_date, label: 'Cheque Date', as: :string, wrapper: :date_field, as: :date_field, input_html: { class: "dontation_cheque_date"} 
   %br
   %br
   .row
