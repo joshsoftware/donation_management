@@ -22,17 +22,16 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
-  def user_params
-    params.require(:user).permit(
-      [:email,:password,:password_confirmation,:role,:contact_number,:name,:company_name])
-  end
-
   def donation_pending_amounts
     user = User.find(params[:id])
     @cash_pending =  user.cash_amount_pending
     @cheque_pending = user.cheque_amount_pending
   end
 
+  private
+
+  def user_params
+    params.require(:user).permit(
+      [:email,:password,:password_confirmation,:role,:contact_number,:name,:company_name])
+  end
 end
