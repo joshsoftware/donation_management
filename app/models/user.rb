@@ -11,6 +11,9 @@ class User
   field :role, type: String
   field :name, type: String
   field :company_name, type: String
+  field :credit_limit, type: Integer
+  field :total_collection_by_cash, type: Integer
+  field :total_collection_by_check, type: Integer
 
   ## Recoverable
   field :reset_password_token,   type: String
