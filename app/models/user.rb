@@ -59,4 +59,8 @@ class User
     amount_pending = self.total_collection_by_cheque - total_submitted
   end
 
+  def is_admin?
+    ['Super Admin', 'Admin']. include? role
+  end
+
 end
