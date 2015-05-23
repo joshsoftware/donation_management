@@ -1,5 +1,5 @@
 %h3 New Donation Submission
-= simple_form_for @donation do |f|
+= simple_form_for(@donation, html: {class: 'form'}) do |f|
   .row
     .col-sm-6.col-xs-12
       = f.association :user, as: :select, collection: @coordinator
