@@ -227,11 +227,7 @@ DEPENDENCIES
   devise
   devise-bootstrap-views
   font-awesome-rails
-<<<<<<< HEAD
-  foreman
-=======
   foreman (~> 0.75.0)
->>>>>>> 87a896bf8ae44c7697418513cd4743ab0642f767
   haml-rails
   jbuilder (~> 2.0)
   jquery-datatables-rails (~> 3.3.0)
