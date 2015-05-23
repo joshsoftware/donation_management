@@ -1,1 +1,1 @@
-worker: rake jobs:work
+worker: bundle exec foreman start -f Procfile.workers
