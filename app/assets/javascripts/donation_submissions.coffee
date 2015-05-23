@@ -4,4 +4,8 @@
 $(document).ready ->
   $('#donation_submission_user_id').select2()
 
+  $('#donation_submission_submission_date').datepicker()
 
+  $('#donation_submission_user_id').change ->
+    user_id = $(this).val()
+    $.get '/users/' + user_id + '/donation_pending_amounts'

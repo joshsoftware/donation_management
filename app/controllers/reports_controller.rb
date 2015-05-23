@@ -15,8 +15,8 @@ class ReportsController < ApplicationController
   end
 
   def pendings
-    user_ids = DonationSubmission.desc(:submission_date).distinct(:user_id)
-    @pendings = DonationSubmission.desc(:submission_date).where(used_id: user_ids)
+    user_ids = DonationSubmission.distinct(:user_id)
+    @pendings = DonationSubmission.where(:user_id.in => user_ids).desc(:submission_date)
   end
 
   def coordinator_submissions
