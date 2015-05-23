@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users
+  resources :users, except: :show
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+  resource :donations, only: [:new, :create]
+  root 'home#index'
   # root 'welcome#index'
   resources :reports, only: [] do 
     collection do 
       get :collections
       get :submissions
+      get :pendings
+      get :coordinator_submissions
+      get :coordinator_collections
     end
   end
+
+  resources :donation_submissions, only: [:new, :create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

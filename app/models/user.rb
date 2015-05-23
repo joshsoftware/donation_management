@@ -10,12 +10,12 @@ class User
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
   field :role, type: String
-  field :contact_numberr, type: String
+  field :contact_number, type: String
   field :name, type: String
   field :company_name, type: String
-  field :credit_limit, type: Integer
-  field :total_collection_by_cash, type: Integer
-  field :total_collection_by_check, type: Integer
+  field :credit_limit, type: Integer, default: 0
+  field :total_collection_by_cash, type: Integer, default: 0
+  field :total_collection_by_cheque, type: Integer, default: 0
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -37,7 +37,7 @@ class User
    field :confirmation_sent_at, type: Time
    field :unconfirmed_email,    type: String # Only if using reconfirmable
 
-   validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
+
 
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
@@ -45,6 +45,23 @@ class User
   # field :locked_at,       type: Time
 
   #Validations
-  validates :role, :contact_number, presence: true
+  validates :contact_number, presence: true
+   validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
   has_many :donations
+  has_many :donation_submissions, inverse_of: :user
+
+  def cash_amount_pending
+    total_submitted = self.donation_submissions.desc(:submission_date).first.try(:cumulative_by_cash).to_i
+    amount_pending = self.total_collection_by_cash - total_submitted
+  end
+
+  def cheque_amount_pending
+    total_submitted = self.donation_submissions.desc(:submission_date).first.try(:cumulative_by_cheque).to_i
+    amount_pending = self.total_collection_by_cheque - total_submitted
+  end
+
+  def is_admin?
+    ['Super Admin', 'Admin']. include? role
+  end
+
 end

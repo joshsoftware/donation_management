@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{name: 'viewport', content: "width=device-width, initial-scale=1"}/
+    %title Seva Sahayog Donations 
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      = render "layouts/navigation" if user_signed_in?
+      - unless flash.blank?
+        - flash.each do |key, val|
+          .alert.alet-dismissible.fade.in{class: "alert-#{key}"}
+            %a.close{'data-dismiss' => 'alert'} X
+            %p
+              %strong= val    
+      = yield
