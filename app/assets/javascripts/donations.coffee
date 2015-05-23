@@ -10,5 +10,3 @@ $(document).ready ->
     else   
       $('.cheque_info').addClass('hidden')
 
-  $('#donation_cheque_date').datepicker
-   format: 'dd/mm/yyyy'
