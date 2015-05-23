@@ -10,4 +10,10 @@
   %body
     .container
       = render "layouts/navigation" if user_signed_in?
+      - unless flash.blank?
+        - flash.each do |key, val|
+          .alert.alet-dismissible.fade.in{class: "alert-#{key}"}
+            %a.close{'data-dismiss' => 'alert'} X
+            %p
+              %strong= val    
       = yield

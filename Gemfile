@@ -49,4 +49,5 @@ gem 'haml-rails'
 gem 'devise'
 gem "devise-bootstrap-views"
 gem 'rest-client'
+gem 'delayed_job_mongoid'
 

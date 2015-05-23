@@ -26,14 +26,15 @@ class Donation
     if self.by_cash
       collection = self.user.total_collection_by_cash
       collection += self.amount
-      self.user.set(:total_collection_by_cash, collection)
+      self.user.set(total_collection_by_cash: collection)
     else
       collection = self.user.total_collection_by_cheque
       collection += self.amount
-      self.user.set(:total_collection_by_cheque, collection)
+      self.user.set(total_collection_by_cheque: collection)
     end
 
-    SmsService::Sms.send_sms_notification.new(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
+    sms = SmsService::Sms.new
+    sms.delay.send_sms_notification(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
   end
 
 end

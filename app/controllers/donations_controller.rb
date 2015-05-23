@@ -3,7 +3,7 @@ class DonationsController < ApplicationController
   before_filter :check_acceptance_limit
 
   def new
-    @donation = @collector.donations.new
+    @donation = @collector.donations.new(by_cash: true)
   end
 
   def create
