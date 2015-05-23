@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-datepicker
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-switch.min
