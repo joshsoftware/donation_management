@@ -1,10 +1,14 @@
 class ReportsController < ApplicationController
 
   def collections
-    render :collections
   end
-  
+
   def submissions
-    render :submissions
+    if params[:type] == 'collected'
+      @submissions = DonationSubmission.desc(:submission_date)
+    elsif params[:type] == 'pending'
+      @submissions = DonationSubmission.desc(:submission_date)
+    end
+    render params[:type]
   end
 end
