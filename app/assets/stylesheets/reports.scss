@@ -1,3 +1,31 @@
 // Place all the styles related to the reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.bs-collection, .bs-pending
+{
+  background-color: #fff;
+  position: relative;
+  padding: 45px 15px 15px;
+  margin: 20px;
+  border-color: #e5e5e5 #eee #eee;
+  border-style: solid;
+  border-width: 1px 0;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+.bs-collection:after, .bs-pending:after {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #959595;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bs-collection:after {
+  content: "Donation Submissions - collected";
+}
+.bs-pending:after {
+  content: "Donation Submissions - pending";
+}
