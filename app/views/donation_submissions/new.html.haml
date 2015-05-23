@@ -3,7 +3,7 @@
   .row
     .col-sm-6.col-xs-12
       = f.association :user, as: :select, collection: @coordinator
-      .panel.panel-info
+      .panel.panel-info.hidden#pending_amount_info_panel
         .panel-body
           .col-sm-6
             = label_tag "Pending Cash Amount", nil, id: "pending_cash_amount"
