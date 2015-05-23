@@ -49,4 +49,5 @@ gem 'haml-rails'
 gem 'devise'
 gem "devise-bootstrap-views"
 gem 'rest-client'
-
+gem 'bootstrap-datepicker-rails'
+gem "font-awesome-rails"
