@@ -1,15 +1,25 @@
-%table{ :class => 'datatable', border: 4}
-  %th Name
-  %th Email
-  %th Role
-  %th Company
-  - @user.each do |user|
-    %tr
-      %td
-        = user.name
-      %td
-        = user.email
-      %td
-        = user.role
-      %td
-        = user.company_name
+.container
+  %table.table{ id: "user_index", class: "table table-striped", border: 1}
+    %thead
+      %tr
+        %th Name
+        %th Email
+        %th Role
+        %th Company
+    %tbody
+      - @user.each do |user|
+        %tr
+          %td
+            = user.name
+          %td
+            = user.email
+          %td
+            = user.role
+          %td
+            = user.company_name
+          %td
+            .glyphicon-pencil
+              = link_to "Edit", edit_user_path(user.id)
+
+:javascript
+  $("#user_index").dataTable()
