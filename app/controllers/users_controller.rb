@@ -23,7 +23,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    new_attrs = create_temporary_passsword
+    @user = User.new(new_attrs)
     if @user.save
       @user.invite!(current_user)
       redirect_to users_path
@@ -43,5 +44,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       [:email,:password,:password_confirmation,:role,:contact_number,:name,:company_name, :credit_limit])
+  end
+
+  def create_temporary_passsword
+    pwd = SecureRandom.hex
+    user_params.merge({:password => pwd,:password_confirmation => pwd})
   end
 end
