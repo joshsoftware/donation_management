@@ -19,8 +19,6 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-  config.action_mailer.smtp_settings = {:address => "localhost", :port=>1025}
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
@@ -37,4 +35,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method ||= :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :authentication => :plain,
+    :user_name => ENV['USERNAME'],
+    :password => ENV['PASSWORD'],
+    :domain => 'localhost'
+
+
+  }
+  config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
+
 end
