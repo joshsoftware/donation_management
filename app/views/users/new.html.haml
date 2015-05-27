@@ -12,9 +12,5 @@
     .row
       = f.input :email
     .row
-      = f.input :password
-    .row
-      = f.input :password_confirmation
-    .row
       = f.input :role, collection: assign_role(current_user)
     = f.submit t('.sign_up', :default => "create"), class: "btn btn-primary"
