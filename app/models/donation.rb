@@ -2,7 +2,7 @@ require 'csv'
 class Donation
   include Mongoid::Document
   include Mongoid::Timestamps
-  include SmsService 
+  include NotificationService 
 
   field :name, type: String
   field :email, type: String 
@@ -40,9 +40,9 @@ class Donation
       self.user.set(total_collection_by_cheque: collection)
     end
 
-    sms = SmsService::Sms.new
     Thread.new do
-      sms.send_sms_notification(self.mobile_number, self.user.contact_number, self.name, self.amount, self.by_cash ? 'Cash' : 'Cheque')
+      self.send_email_notification
+      self.send_sms_notification
     end
   end
 
