@@ -19,7 +19,13 @@ class Donation
 
   validates :name, :email, :mobile_number, :amount, :user, presence: true
   validates_format_of :email, with: Devise.email_regexp 
+  validates_numericality_of :amount, only_integer: true
+
   validates :cheque_number, :bank, :cheque_date, presence: true, if: -> {by_cash == false} 
+  validates_numericality_of :cheque_number, only_integer: true, if: -> {by_cash == false} 
+
+  validates :mobile_number, numericality: true, format: {with: /\A\d{10}\z/, message: "is invalid, enter mobile number without 0 or +91"}
+  validates :cheque_date, format: {with: /\A(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/](\d{4})\z/, message: "is invalid, enter date in dd/mm/yyyy format", allow_blank: false}, if: -> {by_cash == false} 
 
   belongs_to :user
 

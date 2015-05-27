@@ -8,14 +8,14 @@
       = f.input :email, label: 'Email'
   .row
     .col-sm-6.col-xs-12
-      = f.input :mobile_number, label: 'Mobile Number'
+      = f.input :mobile_number, label: 'Mobile Number', placeholder: "Mobile Number (10 digits, no 0 or +91)"
   .row
     .col-sm-6.col-xs-12
       = f.input :amount, label: 'Amount'
-  .row
+  .row.payment_type
     .col-sm-6.col-xs-12
       = f.label 'Mode of Payment', class: 'right20'
-      = f.check_box :by_cash, {id: :by_cash_radio, 'data-on-text' =>'Cash', 'data-off-text' => 'Cheque', 'data-radio-all-off' => true, label: 'Mode of Payment', checked: f.object.by_cash == true}, 'true', 'false'
+      = f.input :by_cash, as: :radio_buttons, label: false, collection: [['By Cash', true], ['By Cheque', false]], label_method: :first, value_method: :last, input_html: {id: :by_cash_radio }
   .cheque_info.indent{:class => f.object.by_cash == true ? 'hidden' : ''}
     .row
       .col-sm-6.col-xs-12
@@ -32,5 +32,3 @@
       = f.submit 'Submit Donation', class: 'btn btn-primary'
   %br
   %br
-:javascript     
-  $('#by_cash_radio').bootstrapSwitch()
