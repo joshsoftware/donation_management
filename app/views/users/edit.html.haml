@@ -4,7 +4,7 @@
     = f.input :name, label: "Name"
     = f.input :company_name, label: "Company name"
     = f.input :contact_number, label: "Contact number"
-    = f.input :credit_limit, label: "Credit limit", disabled: can_edit(@user.role)
+    = f.input :credit_limit, label: "Credit limit", disabled: can_edit(current_user.role)
     = f.input :total_collection_by_cash, label: "Total collection by cash", disabled: true
     = f.input :total_collection_by_cheque, label: "Total collection by cheque", disabled: true
   .form-actions
