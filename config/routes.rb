@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   end
 
   resources :donation_submissions, only: [:new, :create]
+  get "user/change-password/:user_id" => "users#change_password", as: :change_password
+  post "user/update-password/:user_id" => "users#update_password", as: :update_password
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

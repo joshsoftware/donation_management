@@ -39,11 +39,27 @@ class UsersController < ApplicationController
     @cheque_pending = user.cheque_amount_pending
   end
 
+  def change_password
+    @user = User.find(params[:user_id])
+  end
+
+  def update_password
+    @user = User.find(params[:user_id])
+    respond_to do |format|
+      if @user.update_with_password(user_params)
+        sign_in @user, bypass: true
+        format.html {redirect_to root_path, notice: "Password has been changed successfully"}
+      else
+        format.html {render action: "change_password"}
+      end
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(
-      [:email,:password,:password_confirmation,:role,:contact_number,:name,:company_name, :credit_limit])
+      [:email,:password,:password_confirmation,:role,:contact_number,:name,:company_name, :credit_limit, :current_password])
   end
 
   def create_temporary_passsword

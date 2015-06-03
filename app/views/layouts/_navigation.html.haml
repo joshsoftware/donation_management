@@ -28,5 +28,7 @@
                 %li= link_to 'Collection', collections_reports_path
                 %li= link_to 'Submission', coordinator_submissions_reports_path
         %li
+          = link_to "Change password", change_password_path(current_user.id)
+        %li
           = link_to "Sign out", destroy_user_session_path, :method => :delete
 
