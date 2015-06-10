@@ -1,0 +1,19 @@
+html {
+	position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 50px;
+}
+.footer {
+	height: 50px;
+  position: absolute;
+  bottom: 0;
+  background-color: #E7E7E7;
+  left: 0;
+  right: 0;
+  text-align: center;
+  a {
+      line-height: 50px;
+  }
+}

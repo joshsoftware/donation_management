@@ -15,5 +15,8 @@
           .alert.alet-dismissible.fade.in{class: "alert-#{key}"}
             %a.close{'data-dismiss' => 'alert'} X
             %p
-              %strong= val    
+              %strong= val   
       = yield
+
+    %footer.footer
+      = render "layouts/footer"
