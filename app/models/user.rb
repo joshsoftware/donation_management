@@ -4,7 +4,7 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   devise :invitable, :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
+    :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -32,22 +32,20 @@ class User
   field :last_sign_in_ip,    type: String
 
   ## Confirmable
-   field :confirmation_token,   type: String
-   field :confirmed_at,         type: Time
-   field :confirmation_sent_at, type: Time
-   field :unconfirmed_email,    type: String # Only if using reconfirmable
+  field :confirmation_token,   type: String
+  field :confirmed_at,         type: Time
+  field :confirmation_sent_at, type: Time
+  field :unconfirmed_email,    type: String # Only if using reconfirmable
 
-#inviatable
-   field :invitation_token, type: String
-   field :invitation_created_at, type: Time
-   field :invitation_sent_at, type: Time
-   field :invitation_accepted_at, type: Time
-   field :invitation_limit, type: Integer
+  #inviatable
+  field :invitation_token, type: String
+  field :invitation_created_at, type: Time
+  field :invitation_sent_at, type: Time
+  field :invitation_accepted_at, type: Time
+  field :invitation_limit, type: Integer
 
-   index( {invitation_token: 1}, {:background => true} )
-   index( {invitation_by_id: 1}, {:background => true} )
-
-
+  index( {invitation_token: 1}, {:background => true} )
+  index( {invitation_by_id: 1}, {:background => true} )
 
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
@@ -56,7 +54,7 @@ class User
 
   #Validations
   validates :contact_number, presence: true
-   validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
+  validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
   has_many :donations
   has_many :donation_submissions, inverse_of: :user
 
@@ -74,6 +72,10 @@ class User
 
   def is_admin?
     ['Super Admin', 'Admin']. include? role
+  end
+
+  def display_name
+    name.nil? ? email : name
   end
 
 end

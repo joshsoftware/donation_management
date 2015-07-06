@@ -16,7 +16,5 @@
         %td= submission.submitted_by_cash
         %td= submission.submitted_by_cheque
         %td= submission.submission_date
-        - sub_display_name = submission.user.name.nil? ? submission.user.email : submission.user.name
-        %td= sub_display_name
-        - rec_display_name = current_user.name.nil? ? current_user.email : current_user.name
-        %td= rec_display_name
+        %td= submission.user.display_name
+        %td= submission.received_by.display_name
