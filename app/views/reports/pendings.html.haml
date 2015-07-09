@@ -18,7 +18,7 @@
         %td= submission.submission_date
         %td= submission.user.display_name
         - if submission.new_record?
-          - rec_status = '*Initial Pending'
+          - rec_status = 'Initial Pending'
         - else
           - rec_status = "Pending"
         %td= rec_status
