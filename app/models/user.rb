@@ -78,4 +78,13 @@ class User
     name.nil? ? email : name
   end
 
+  def self.with_pending_donations
+    users = all.select{|user| user.donation_submissions.blank? and user.donations.present? }.uniq
+    users.map(&:build_pending_donations) if users.present?
+    users
+  end
+
+  def build_pending_donations
+    self.donation_submissions.build(submission_date: self.donations.desc(:created_at).first.created_at)
+  end
 end
