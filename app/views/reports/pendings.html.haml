@@ -16,10 +16,9 @@
         %td= submission.user.cash_amount_pending 
         %td= submission.user.cheque_amount_pending
         %td= submission.submission_date
-        - sub_display_name = submission.user.name.nil? ? submission.user.email : submission.user.name
-        %td= sub_display_name
+        %td= submission.user.display_name
         - if submission.new_record?
           - rec_display_name = '*Initial Pending'
         - else
-          - rec_display_name = submission.received_by.name.nil? ? submission.received_by.email : submission.received_by.name
+          - rec_display_name =submission.received_by.display_name
         %td= rec_display_name
