@@ -15,7 +15,8 @@ class ReportsController < ApplicationController
   end
 
   def pendings
-    user_ids = DonationSubmission.distinct(:user_id)
+    users = DonationSubmission.users_with_donation_submissions
+    user_ids = users.present? ? users.collect(&:id) : [] 
     # Adding pending donations that are not received/submitted
     users = User.with_pending_donations
     # Prepare initial pendings 
