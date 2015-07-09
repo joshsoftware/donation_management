@@ -10,7 +10,7 @@
       %th
         Submited By
       %th 
-        Status/Received By
+        Status
     - @pendings.each do |submission|
       %tr 
         %td= submission.user.cash_amount_pending 
@@ -18,7 +18,7 @@
         %td= submission.submission_date
         %td= submission.user.display_name
         - if submission.new_record?
-          - rec_display_name = '*Initial Pending'
+          - rec_status = '*Initial Pending'
         - else
-          - rec_display_name =submission.received_by.display_name
-        %td= rec_display_name
+          - rec_status = "Pending"
+        %td= rec_status
