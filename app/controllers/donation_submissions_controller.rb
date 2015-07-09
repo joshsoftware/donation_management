@@ -1,7 +1,7 @@
 class DonationSubmissionsController < ApplicationController
   def new
     @donation = DonationSubmission.new
-    @coordinator = User.all
+    @coordinator = User.all.select{|user| user.has_pending_amount?}
   end
 
   def create

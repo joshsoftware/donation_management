@@ -87,4 +87,8 @@ class User
   def build_pending_donations
     self.donation_submissions.build(submission_date: self.donations.desc(:created_at).first.created_at)
   end
+
+  def has_pending_amount?
+    self.cash_amount_pending != 0 or self.cheque_amount_pending != 0
+  end
 end
