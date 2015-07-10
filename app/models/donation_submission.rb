@@ -14,7 +14,7 @@ class DonationSubmission
   validates :user_id, :submission_date, presence: true
 
   def self.users_with_donation_submissions
-    users = User.where(id: self.distinct(:user_id))
+    users = User.where(:id.in => self.distinct(:user_id))
     users.select{|user| user.has_pending_amount? } if users.present?
   end
 end
