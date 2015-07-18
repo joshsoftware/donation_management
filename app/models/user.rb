@@ -5,7 +5,9 @@ class User
 
   devise :invitable, :database_authenticatable,
     :recoverable, :rememberable, :trackable, :validatable
-
+  
+  Roles = ['Super Admin', 'Admin', 'Coordinator']
+  
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
@@ -54,7 +56,7 @@ class User
 
   #Validations
   validates :contact_number, presence: true
-  validates :role, presence: true, :inclusion => { :in => ['Super Admin', 'Admin', 'Coordinator'] }
+  validates :role, presence: true, :inclusion => { :in => Roles }
   has_many :donations
   has_many :donation_submissions, inverse_of: :user
 
@@ -72,6 +74,10 @@ class User
 
   def is_admin?
     ['Super Admin', 'Admin']. include? role
+  end
+
+  def is_super_admin?
+    role == Roles[0]
   end
 
   def display_name

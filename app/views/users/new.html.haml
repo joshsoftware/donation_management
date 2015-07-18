@@ -12,5 +12,8 @@
     .row
       = f.input :email
     .row
-      = f.input :role, collection: assign_role(current_user)
+      - if current_user.is_super_admin?
+        = f.input :role, collection: assign_role(current_user)
+      - else
+        = f.input :role, input_html: {value: User::Roles[2], readonly: true} 
     = f.submit t('.sign_up', :default => "create"), class: "btn btn-primary"
