@@ -32,6 +32,8 @@ gem 'devise_invitable'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # use quiet_assets in development
+  gem 'quiet_assets'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
