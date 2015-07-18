@@ -5,20 +5,16 @@
         Cash
       %th 
         Cheque
-      %th 
-        Submission Date
       %th
-        Submited By
-      %th 
-        Status
+        Co-ordinator
+      %th
+        Co-ordinator Contact
+      %th
+        Co-ordinator Email
     - @pendings.each do |submission|
       %tr 
         %td= submission.user.cash_amount_pending 
         %td= submission.user.cheque_amount_pending
-        %td= submission.submission_date
         %td= submission.user.display_name
-        - if submission.new_record?
-          - rec_status = 'Initial Pending'
-        - else
-          - rec_status = "Pending"
-        %td= rec_status
+        %td= submission.user.contact_number
+        %td= submission.user.email
