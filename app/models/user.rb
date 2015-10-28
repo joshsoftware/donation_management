@@ -4,7 +4,7 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   devise :invitable, :database_authenticatable,
-    :recoverable, :rememberable, :trackable, :validatable, :registerable
+    :recoverable, :rememberable, :trackable, :validatable#, :registerable
 
   Roles = ['Super Admin', 'Admin', 'Coordinator']
   
