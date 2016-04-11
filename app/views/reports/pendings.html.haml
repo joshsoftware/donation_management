@@ -11,10 +11,11 @@
         Co-ordinator Contact
       %th
         Co-ordinator Email
-    - @pendings.each do |submission|
+    - @users.each do |user|
+      - next unless user.has_pending_amount?
       %tr 
-        %td= submission.user.cash_amount_pending 
-        %td= submission.user.cheque_amount_pending
-        %td= submission.user.display_name
-        %td= submission.user.contact_number
-        %td= submission.user.email
+        %td= user.cash_amount_pending 
+        %td= user.cheque_amount_pending
+        %td= user.display_name
+        %td= user.contact_number
+        %td= user.email

@@ -15,13 +15,7 @@ class ReportsController < ApplicationController
   end
 
   def pendings
-    users = DonationSubmission.users_with_donation_submissions
-    user_ids = users.present? ? users.collect(&:id) : [] 
-    # Adding pending donations that are not received/submitted
-    users = User.with_pending_donations
-    # Prepare initial pendings 
-    @pendings = users.map(&:donation_submissions).flatten
-    @pendings += DonationSubmission.where(:user_id.in => user_ids).desc(:submission_date)
+    @users = User.all
   end
 
   def coordinator_submissions
