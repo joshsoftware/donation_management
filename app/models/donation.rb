@@ -19,7 +19,7 @@ class Donation
 
   validates :name, :email, :mobile_number, :amount, :user, presence: true
   validates_format_of :email, with: Devise.email_regexp 
-  validates_numericality_of :amount, only_integer: true
+  validates_numericality_of :amount, {greater_than: 0 }
 
   validates :cheque_number, :bank, :cheque_date, presence: true, if: -> {by_cash == false} 
   validates_numericality_of :cheque_number, only_integer: true, if: -> {by_cash == false} 
