@@ -16,10 +16,10 @@ class Donation
   field :cheque_date, type: String, default: Date.today.strftime('%d/%m/%Y') 
 
   field :pan_number, type: String
+  field :unique_identifier
 
-  validates :name, :email, :mobile_number, :amount, :user, presence: true
+  validates :name, :email, :mobile_number, :amount, :user, :unique_identifier, presence: true
   validates_format_of :email, with: Devise.email_regexp 
-  validates_numericality_of :amount, {greater_than: 0 }
 
   validates :cheque_number, :bank, :cheque_date, presence: true, if: -> {by_cash == false} 
   validates_numericality_of :cheque_number, only_integer: true, if: -> {by_cash == false} 
@@ -28,6 +28,10 @@ class Donation
   validates :cheque_date, format: {with: /\A(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/](\d{4})\z/, message: "is invalid, enter date in dd/mm/yyyy format", allow_blank: false}, if: -> {by_cash == false} 
 
   belongs_to :user
+
+  before_validation do
+    self.unique_identifier = DateTime.now.to_i
+  end
 
   after_create do
     if self.by_cash
@@ -48,10 +52,12 @@ class Donation
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << ["Date", "Donor Name", "Donor Email", "Donor Mobile" ,"Amount", "Cash/Cheque", "Cheque date", "Cheque number", "Bank", "Collected By"]
+      csv << ["Uniq Id", "Date", "Donor Name", "Donor Email", "Donor Mobile" ,"Amount", "Cash/Cheque", 
+              "Cheque date", "Cheque number", "Bank", "Collected By"]
       Donation.all.each do |donation|
         payment_mode = donation.by_cash ? 'Cash' : 'Cheque'
-        csv << [donation.created_at.to_date, donation.name, donation.email, donation.mobile_number, donation.amount, payment_mode, donation.cheque_date, 
+        csv << [donation.unique_identifier, donation.created_at.to_date, donation.name, donation.email, 
+                donation.mobile_number, donation.amount, payment_mode, donation.cheque_date, 
                 donation.cheque_number, donation.bank, donation.user.name ]
       end
     end
