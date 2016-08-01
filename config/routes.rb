@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  resource :donations, only: [:new, :create]
+  resource :donations, only: [:new] #, :create]
   root 'home#index'
   # root 'welcome#index'
   resources :reports, only: [] do 
